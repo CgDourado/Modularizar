@@ -1,0 +1,95 @@
+using static System.Console;
+using System;
+
+namespace ComoEstas
+{
+    class MainClass
+    {
+        public static void Perguntas(String[] options)
+        {
+            foreach (String option in options)
+            {
+                WriteLine(option);
+            }
+            WriteLine("- Eae, Como você se sente?");
+        }
+
+        public static void Main(String[] opções)
+        {
+            WriteLine("-=-=-=-=-=-=-=-=-=-= CONSOLO =-=-=-=-=-=-=-=-=-=-=");
+            WriteLine();
+            String[] options = {"1) - Estou Feliz",
+                                "2) - Estou triste",
+                                "3) - Me ajuda",
+                                "4) - Não quero falar sobre isso"
+            };
+            int option = 0;
+
+            while (true)
+            {
+                Perguntas(options);
+                try
+                {
+                    option = Convert.ToInt32(ReadLine());
+                }
+                catch (System.FormatException)
+                {
+                    WriteLine("Por favor, digite uma opção entre A e" + options.Length);
+                    continue; ;
+                }
+                switch (option)
+                {
+                    case 1:
+                        Feliz();
+                        break;
+                    case 2:
+                        Triste();
+                        break;
+                    case 3:
+                        Ajuda();
+                        break;
+                    case 4:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        WriteLine("Por favor, diigite uma opção entre A e" + options.Length);
+                        break;
+                }
+            }
+        }
+
+        static List<string> opções = new List<string>();
+
+        private static void Feliz()
+        {
+            Clear();
+            WriteLine("Ebaaa, que bom que você está felizzz, continue assim :)");
+            WriteLine("seja feliz, e faça os outros a sua volta feliz.");
+            WriteLine();
+            WriteLine(":)");
+            WriteLine();
+            WriteLine("-=-=-=-=-=-=-=-=-=-= CONSOLO =-=-=-=-=-=-=-=-=-=-=");
+
+        }
+
+        private static void Triste()
+        {
+            Clear();
+            WriteLine("Sinto Muito, espero que você fique feliz logo!!");
+            WriteLine("A vida não derruba quem já ta no chão.");
+            WriteLine();
+            WriteLine(":(");
+            WriteLine();
+            WriteLine("-=-=-=-=-=-=-=-=-=-= CONSOLO =-=-=-=-=-=-=-=-=-=-=");
+        }
+
+        private static void Ajuda()
+        {
+            Clear();
+            WriteLine("Se precisa de ajuda, saiba que estou aqui, não sei o que sentes, mas sei que você Consegue!!");
+            WriteLine("Caso pecise falar com alguém, ligue para 180");
+            WriteLine();
+            WriteLine("-=-=-=-=-=-=-=-=-=-= CONSOLO =-=-=-=-=-=-=-=-=-=-=");
+        }
+    }
+}
