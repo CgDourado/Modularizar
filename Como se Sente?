@@ -34,7 +34,7 @@ namespace ComoEstas
                 }
                 catch (System.FormatException)
                 {
-                    WriteLine("Por favor, digite uma opção entre A e" + options.Length);
+                    WriteLine("Por favor, digite uma opção entre 1 e" + options.Length);
                     continue; ;
                 }
                 switch (option)
