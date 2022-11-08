@@ -1,0 +1,156 @@
+using static System.Console;
+using System;
+namespace Fornecedores
+{
+    class MainClass
+    {
+        public static void PrintMenu(String[] options)
+        {
+            foreach (String option in options)
+            {
+                WriteLine(option);
+            }
+            WriteLine();
+            WriteLine("Escolha uma opção:");
+        }
+
+        public static void Main(String[] args)
+        {
+            WriteLine(">>>> CADASTRO DE FORNECEDORES <<<<");
+            String[] options = { "1 - Cadastrar Fornecedor",
+                                 "2 - Editar Fornecedor",
+                                 "3 - Excluir Fornecedor",
+                                 "4 - Listar Fornecedores",
+                                 "5 - Sair"
+            };
+            int option = 0;
+            while (true)
+            {
+                PrintMenu(options);
+                try
+                {
+                    option = Convert.ToInt32(ReadLine());
+                }
+                catch (System.FormatException)
+                {
+                    WriteLine("Por Favor, Cabeça de guidão, digite uma opção entre 1 e" + options.Length);
+                    continue; ;
+                }
+                switch (option)
+                {
+                    case 1:
+                        CadastrarFornecedor();
+                        break;
+                    case 2:
+                        EditarFornecedor();
+                        break;
+                    case 3:
+                        ExcluirFornecedor();
+                        break;
+                    case 4:
+                        ListarFornecedor();
+                        break;
+                    case 5:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        WriteLine("Por Favor, digite uma opção entre 1 e " + options.Length);
+                        break;
+                }
+            }
+        }
+
+        static List<string> nomes = new List<string>();
+        static List<int> celular = new List<int>();
+        static List<string> cidade = new List<string>();
+
+        private static void CadastrarFornecedor()
+        {
+            Clear();
+            WriteLine(">>>> CADASTRO DE FORNECEDORES <<<<");
+            WriteLine();
+            WriteLine("Digite o nome da Pessoa: ");
+            nomes.Add(ReadLine());
+            WriteLine("Digite o Celular da Pessoa: ");
+            celular.Add(Convert.ToInt32(ReadLine()));
+            WriteLine("Digite a Cidade que a pessoa Está: ");
+            cidade.Add(ReadLine());
+            WriteLine();
+        }
+
+        private static void EditarFornecedor()
+        {
+            Clear();
+            WriteLine(">>>> Edição De Fornecedores <<<<");
+            string nome = "";
+            WriteLine();
+            WriteLine("Digite o nome da Pessoa que você deseja editar: ");
+            nome = ReadLine();
+            int index = nomes.IndexOf(nome);
+            if (index >= 0)
+            {
+                WriteLine();
+                WriteLine(">>>> Registro que será Editado <<<<");
+                WriteLine($"Nome: {nomes[index]}");
+                WriteLine($"Celular: {celular[index]}");
+                WriteLine($"Cidade: {cidade[index]}");
+                WriteLine();
+                WriteLine("Digite um novo Nome: ");
+                nomes[index] = ReadLine();
+                WriteLine("Digite um Novo Celular: ");
+                celular[index] = Convert.ToInt32(ReadLine());
+                WriteLine("Digite uma Nova Cidade: ");
+                cidade[index] = ReadLine();
+                WriteLine(">>>> Registro Atualizado com Sucesso! <<<<");
+                WriteLine();
+            }
+            else
+            {
+                WriteLine(">>>> Registro Não Encontrado! <<<<");
+            }
+        }
+
+        private static void ExcluirFornecedor()
+        {
+            Clear();
+            WriteLine(">>>> Excluir Fornecedor <<<<");
+            string nome = "";
+            WriteLine();
+            WriteLine("Digite o nome da Pessoa que você deseja editar: ");
+            nome = ReadLine();
+            int index = nomes.IndexOf(nome);
+            if (index >= 0)
+            {
+                WriteLine();
+                WriteLine(">>>> Registro que será Excluido <<<<");
+                WriteLine($"Nome: {nomes[index]}");
+                WriteLine($"Celular: {celular[index]}");
+                WriteLine($"Cidade: {cidade[index]}");
+                WriteLine();
+                nomes.RemoveAt(index);
+                celular.RemoveAt(index);
+                cidade.RemoveAt(index);
+                WriteLine(">>>> Registro Excluido com Sucesso! <<<<");
+                WriteLine();
+            }
+            else
+            {
+                WriteLine(">>>> Registro Não Encontrado! <<<<");
+            }
+        }
+
+        private static void ListarFornecedor()
+        {
+            Clear();
+            WriteLine(">>>> Listagem de Fornecedores <<<<");
+            WriteLine();
+            int pos = 0;
+            foreach (var item in nomes)
+            {
+                WriteLine($"Nome: {item} - Celular: {celular[pos]} - Cidade: {cidade[pos]}");
+                pos++;
+            }
+            WriteLine();
+        }
+    }
+}
